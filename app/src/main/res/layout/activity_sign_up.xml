@@ -116,33 +116,6 @@
                 android:paddingEnd="20dp"
                 android:textColor="@color/primary_text"
                 android:textSize="11sp"/>
-            <TextView
-                android:id="@+id/textNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primary_text"
-                android:layout_marginTop="5dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                tools:ignore="SmallSp" />
-
-            <EditText
-                android:id="@+id/inputNumber"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/background_input"
-                android:hint="@string/phone_number"
-                android:textColorHint="@color/primary_text"
-                android:imeOptions="actionNext"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textColor="@color/primary_text"
-                android:textSize="11sp"/>
 
             <TextView
                 android:id="@+id/textPassword"

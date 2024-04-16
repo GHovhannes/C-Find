@@ -277,22 +277,15 @@ public class MainActivity extends BaseActivity implements UserListener, DialogLi
 //                            double longitudeInput = Double.parseDouble(Objects.requireNonNull(queryDocumentSnapshot.getString(KEY_LONGITUDE)));
 
                             if (!currentUserId.equals(queryDocumentSnapshot.getId())) {
-                                String userLatitude = queryDocumentSnapshot.getString(KEY_LATITUDE);
-                                String userLongitude = queryDocumentSnapshot.getString(KEY_LONGITUDE);
-                                String distance = queryDocumentSnapshot.getString(KEY_DISTANCE);
+                                            User user = new User();
+                                            user.userName = queryDocumentSnapshot.getString(KEY_USER_NAME);
+                                            user.email = queryDocumentSnapshot.getString(KEY_EMAIL);
+                                            user.image = queryDocumentSnapshot.getString(KEY_IMAGE);
+                                            user.token = queryDocumentSnapshot.getString(KEY_FCM_TOKEN);
+                                            user.id = queryDocumentSnapshot.getId();
+                                            userList.add(user);
 
-                                assert distance != null;
-                                assert userLongitude != null;
-                                assert userLatitude != null;
-                                if(ifDistanceIsOk(Double.parseDouble(userLatitude),Double.parseDouble(userLongitude),Double.parseDouble(distance))) {
-                                    User user = new User();
-                                    user.userName = queryDocumentSnapshot.getString(KEY_USER_NAME);
-                                    user.email = queryDocumentSnapshot.getString(KEY_EMAIL);
-                                    user.image = queryDocumentSnapshot.getString(KEY_IMAGE);
-                                    user.token = queryDocumentSnapshot.getString(KEY_FCM_TOKEN);
-                                    user.id = queryDocumentSnapshot.getId();
-                                    userList.add(user);
-                                }
+
                             }
 
 //                            Log.d("HELLO", "ISDistanceOk: " + ifDistanceIsOk(latitudeInput, longitudeInput));

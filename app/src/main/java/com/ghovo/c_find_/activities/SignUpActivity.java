@@ -314,44 +314,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         });
 
-        activitySignUpBinding.inputNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                if (encodedImage == null) {
-
-                    activitySignUpBinding.imageProfile.setBackground(AppCompatResources.getDrawable(
-                            getApplicationContext(), R.drawable.background_incorrect_input
-                    ));
-
-                    activitySignUpBinding.textAddImage.setText(R.string.add_image);
-
-                } else {
-
-                    activitySignUpBinding.imageProfile.setBackground(AppCompatResources.getDrawable(
-                            getApplicationContext(), R.drawable.background_correct_input
-                    ));
-
-                    activitySignUpBinding.textAddImage.setText("");
-                }
-                activitySignUpBinding.inputNumber.setBackground(AppCompatResources.getDrawable(
-                        getApplicationContext(), R.drawable.background_incorrect_input
-                ));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                activitySignUpBinding.inputNumber.setBackground(AppCompatResources.getDrawable(
-                        getApplicationContext(), R.drawable.background_correct_input
-                ));
-            }
-
-        });
 
         activitySignUpBinding.inputConfirmPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -464,9 +427,6 @@ public class SignUpActivity extends AppCompatActivity {
             showToast("Passwords doesn't matching");
             return false;
 
-        }else if(activitySignUpBinding.inputNumber.getText().toString().trim().isEmpty()){
-            showToast("Enter phone number");
-            return false;
         }
         else {
 
@@ -570,7 +530,6 @@ public class SignUpActivity extends AppCompatActivity {
                     }
 
                     if (flag.get()) {
-                        String number = activitySignUpBinding.inputNumber.getText().toString();
 
                         firebaseAuth.createUserWithEmailAndPassword(activitySignUpBinding.inputEmail.getText().toString(),
                                         activitySignUpBinding.inputPassword.getText().toString())
@@ -586,7 +545,6 @@ public class SignUpActivity extends AppCompatActivity {
                                         userData.put(KEY_LATITUDE, "0.0");
                                         userData.put(KEY_LONGITUDE, "0.0");
                                         userData.put(KEY_DISTANCE, "1000");
-                                        userData.put(KEY_NUMBER,number);
 
                                         firebaseFirestore.collection(KEY_COLLECTION_USERS)
                                                 .add(userData)
@@ -594,7 +552,7 @@ public class SignUpActivity extends AppCompatActivity {
                                                     preferenceManager.putString(KEY_USER_ID, documentReference.getId());
                                                     preferenceManager.putString(KEY_USER_NAME, activitySignUpBinding.inputUserName.getText().toString().trim());
                                                     preferenceManager.putString(KEY_IMAGE, encodedImage);
-                                                    preferenceManager.putString(KEY_NUMBER,number);
+
 
                                                     showToast("Sign up is successful\n" +
                                                             "Verify your account");
